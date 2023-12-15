@@ -1,0 +1,14 @@
+.btn {
+  padding: 0.8rem 1.8rem;
+  box-shadow: 2px 2px 7px 0 rgb(0, 0, 0, 0.2);
+  color: black;
+  width: 10rem;
+  font-size: 1.4rem;
+  float: left;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+.btn:active {
+  transform: scale(1.05);
+}

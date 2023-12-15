@@ -1,0 +1,14 @@
+.main {
+  height: 100vh;
+  max-height: max-content;
+}
+
+@media screen and (min-width: 908px) {
+  .main {
+    height: 100vh;
+  }
+}
+
+.section {
+  padding: 2rem 5rem;
+}

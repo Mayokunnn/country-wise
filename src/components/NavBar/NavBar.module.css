@@ -1,0 +1,38 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0.2rem 2rem;
+  height: 6rem;
+  font-size: 1.2rem;
+  color: var(--color-light-text);
+  box-shadow: -1px -3px 10px 0px var(--color-dark-bg);
+  -webkit-box-shadow: -1px -3px 10px 0px var(--color-dark-bg);
+  -moz-box-shadow: -1px -3px 10px 0px var(--color-dark-bg);
+}
+
+.nav h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.nav h2 {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .nav {
+    padding: 1.5rem 5rem;
+    height: 8rem;
+  }
+
+  .nav h1 {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+  }
+
+  .nav h2 {
+    display: block;
+  }
+}
