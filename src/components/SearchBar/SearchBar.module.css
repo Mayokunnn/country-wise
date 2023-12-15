@@ -25,6 +25,9 @@
 }
 
 @media screen and (min-width: 768px) {
+  .inputContainer {
+    padding: 0.7rem 2.5rem;
+  }
   .input {
     width: 30rem;
   }

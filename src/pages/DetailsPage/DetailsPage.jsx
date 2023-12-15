@@ -8,11 +8,10 @@ import styles from "./DetailsPage.module.css";
 import Loader from "../../components/Loader/Loader";
 import { useCountries } from "../../contexts/CountriesContext";
 
-function DetailsPage({ country, status }) {
-  const { getCountry } = useCountries();
+function DetailsPage() {
+  const { getCountry, country, status } = useCountries();
   const navigate = useNavigate();
   const { name } = useParams();
-  console.log(name);
 
   useEffect(() => {
     getCountry(name);
@@ -23,7 +22,7 @@ function DetailsPage({ country, status }) {
       <NavBar />
       <div className={styles.section}>
         <Main>
-          <BackButton onClick={() => navigate(-1)} />
+          <BackButton onClick={() => navigate("/")} />
           {status === "loading" && <Loader />}
 
           {country && status === "ready" && <CountryDetails />}

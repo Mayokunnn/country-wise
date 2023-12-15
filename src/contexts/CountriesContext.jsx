@@ -44,7 +44,7 @@ function CountriesProvider({ children }) {
       case "countryFetched":
         return { ...state, country: action.payload, status: "ready" };
       default:
-        return state;
+        return { ...state, initialState };
     }
   }
 
@@ -74,8 +74,6 @@ function CountriesProvider({ children }) {
 
       const res = await fetch(`${BASE_URL}/name/${name}?fullText=true`);
       const data = await res.json();
-
-      console.log(data[0]);
 
       dispatch({ type: "countryFetched", payload: data[0] });
     } catch (err) {

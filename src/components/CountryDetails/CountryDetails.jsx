@@ -1,7 +1,7 @@
-import { useEffect } from "react";
 import styles from "./CountryDetails.module.css";
 import Loader from "../Loader/Loader";
 import { useCountries } from "../../contexts/CountriesContext";
+import { useNavigate } from "react-router-dom";
 
 function getFirstValue(
   obj = { key1: "value1", key2: "value2", key3: "value3" }
@@ -15,7 +15,6 @@ function getFirstValue(
     const firstEntry = entries[0];
 
     // Extract and return the first value
-    console.log(firstEntry[1]);
     return firstEntry[1];
   } else {
     // Return null or handle the case when the object is empty
@@ -24,7 +23,17 @@ function getFirstValue(
 }
 
 function CountryDetails() {
-  const { country, status } = useCountries();
+  const { country, status, countries } = useCountries();
+
+  const navigate = useNavigate();
+
+  // console.log(country);
+
+  const borders = country?.borders?.map((border) =>
+    countries.filter((coun) => coun.cca3 === border)
+  );
+
+  borders?.forEach((border) => console.log(border[0]));
 
   if (status === "loading") return <Loader />;
 
@@ -74,9 +83,22 @@ function CountryDetails() {
         <div className={styles.borderCountries}>
           <p>Border Countries: </p>
           <div>
-            <span>France</span>
+            {borders?.map(
+              (border, i) =>
+                i < 3 && (
+                  <span
+                    onClick={() =>
+                      navigate(`/${border?.[0]?.name?.common}`.toLowerCase())
+                    }
+                    key={border.cca2}
+                  >
+                    {border?.[0]?.name?.common}
+                  </span>
+                )
+            )}
+            {/* <span>France</span>
             <span>Germany</span>
-            <span>Netherlands</span>
+            <span>Netherlands</span> */}
           </div>
         </div>
       </div>
