@@ -1,7 +1,7 @@
 import styles from "./CountryItem.module.css";
 import { motion } from "framer-motion";
 
-function Country({ country }) {
+function Country({ country, onClick }) {
   const { flags, capital, region, population, name } = country;
   return (
     <motion.div
@@ -15,6 +15,7 @@ function Country({ country }) {
         stiffness: 100,
       }}
       viewport={{ once: true }}
+      onClick={onClick}
     >
       <div className={styles.flag}>
         <img src={flags.png} alt={name.common}></img>
