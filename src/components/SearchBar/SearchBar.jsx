@@ -1,6 +1,8 @@
+import { useCountries } from "../../contexts/CountriesContext";
 import styles from "./SearchBar.module.css";
 
-function SearchBar({ dispatch, query }) {
+function SearchBar() {
+  const { dispatch, query } = useCountries();
   return (
     <div className={styles.inputContainer}>
       <svg

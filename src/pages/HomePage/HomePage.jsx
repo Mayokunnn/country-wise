@@ -10,8 +10,8 @@ function HomePage({ countries, status, dispatch, query }) {
     <div className={styles.section}>
       <NavBar />
       <Main>
-        <Header dispatch={dispatch} query={query} />
-        <Body countries={countries} status={status} />
+        <Header />
+        <Body />
       </Main>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import styles from "./CountryDetails.module.css";
 import Loader from "../Loader/Loader";
+import { useCountries } from "../../contexts/CountriesContext";
 
 function getFirstValue(
   obj = { key1: "value1", key2: "value2", key3: "value3" }
@@ -22,8 +23,8 @@ function getFirstValue(
   }
 }
 
-function CountryDetails({ country, status }) {
-  console.log(country);
+function CountryDetails() {
+  const { country, status } = useCountries();
 
   if (status === "loading") return <Loader />;
 

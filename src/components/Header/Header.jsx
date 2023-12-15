@@ -5,7 +5,7 @@ import styles from "./Header.module.css";
 function Header({ dispatch, query }) {
   return (
     <div className={styles.section}>
-      <SearchBar dispatch={dispatch} query={query} />
+      <SearchBar />
       <FilterCountry />
     </div>
   );
