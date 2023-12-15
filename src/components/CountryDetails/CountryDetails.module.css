@@ -58,7 +58,7 @@
   padding: 0.7rem 1.4rem;
   box-shadow: 2px 2px 7px 0 rgb(0, 0, 0, 0.2);
   color: black;
-  width: 10rem;
+  width: max-content;
   font-size: 1.4rem;
   display: flex;
   align-items: center;

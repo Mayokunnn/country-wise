@@ -33,8 +33,6 @@ function CountryDetails() {
     countries.filter((coun) => coun.cca3 === border)
   );
 
-  borders?.forEach((border) => console.log(border[0]));
-
   if (status === "loading") return <Loader />;
 
   return (
