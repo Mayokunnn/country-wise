@@ -4,16 +4,16 @@ const CountriesContext = createContext();
 
 const BASE_URL = "https://restcountries.com/v3.1";
 
-function CountriesProvider({ children }) {
-  const initialState = {
-    initialData: [],
-    countriesData: [],
-    status: "ready",
-    query: "",
-    country: [],
-    region: "",
-  };
+const initialState = {
+  initialData: [],
+  countriesData: [],
+  status: "ready",
+  query: "",
+  country: [],
+  region: "",
+};
 
+function CountriesProvider({ children }) {
   function reducer(state, action) {
     switch (action.type) {
       case "dataFetched":
@@ -99,13 +99,14 @@ function CountriesProvider({ children }) {
     dispatch({ type: "countryFiltered", payload: e.target.value });
   }
 
-  const { countriesData, status, query, country, region } = state;
+  const { countriesData, status, query, country, region, initialData } = state;
 
   return (
     <CountriesContext.Provider
       value={{
         dispatch,
         countries: countriesData,
+        allCountries: initialData,
         status,
         query,
         country,

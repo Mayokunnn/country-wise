@@ -2,6 +2,7 @@ import styles from "./CountryDetails.module.css";
 import Loader from "../Loader/Loader";
 import { useCountries } from "../../contexts/CountriesContext";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function getFirstValue(
   obj = { key1: "value1", key2: "value2", key3: "value3" }
@@ -23,15 +24,29 @@ function getFirstValue(
 }
 
 function CountryDetails() {
-  const { country, status, countries } = useCountries();
+  const { country, status, allCountries } = useCountries();
+  const [borders, setBorders] = useState([]);
 
   const navigate = useNavigate();
 
-  // console.log(country);
+  console.log(country);
 
-  const borders = country?.borders?.map((border) =>
-    countries.filter((coun) => coun.cca3 === border)
-  );
+  useEffect(() => {
+    async function getBorders() {
+      // Clear the borders before fetching new ones
+      setBorders([]);
+
+      const borders = await country?.borders?.map((border) => {
+        return allCountries.filter((coun) => {
+          return coun.cca3 === border;
+        });
+      });
+      setBorders(borders);
+    }
+    getBorders();
+  }, [country, country?.borders, allCountries]);
+
+  console.log(borders);
 
   if (status === "loading") return <Loader />;
 
@@ -89,7 +104,7 @@ function CountryDetails() {
                       onClick={() =>
                         navigate(`/${border?.[0]?.name?.common}`.toLowerCase())
                       }
-                      key={border.cca2}
+                      key={border?.[0]?.cca2}
                     >
                       {border?.[0]?.name?.common}
                     </span>
