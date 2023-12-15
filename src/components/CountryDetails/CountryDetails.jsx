@@ -78,27 +78,29 @@ function CountryDetails() {
             </p>
           </div>
         </div>
-        <div className={styles.borderCountries}>
-          <p>Border Countries: </p>
-          <div>
-            {borders?.map(
-              (border, i) =>
-                i < 3 && (
-                  <span
-                    onClick={() =>
-                      navigate(`/${border?.[0]?.name?.common}`.toLowerCase())
-                    }
-                    key={border.cca2}
-                  >
-                    {border?.[0]?.name?.common}
-                  </span>
-                )
-            )}
-            {/* <span>France</span>
+        {borders && (
+          <div className={styles.borderCountries}>
+            <p>Border Countries: </p>
+            <div>
+              {borders?.map(
+                (border, i) =>
+                  i < 3 && (
+                    <span
+                      onClick={() =>
+                        navigate(`/${border?.[0]?.name?.common}`.toLowerCase())
+                      }
+                      key={border.cca2}
+                    >
+                      {border?.[0]?.name?.common}
+                    </span>
+                  )
+              )}
+              {/* <span>France</span>
             <span>Germany</span>
             <span>Netherlands</span> */}
+            </div>
           </div>
-        </div>
+        )}{" "}
       </div>
     </div>
   );
