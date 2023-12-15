@@ -11,6 +11,7 @@ function CountriesProvider({ children }) {
     status: "ready",
     query: "",
     country: [],
+    region: "",
   };
 
   function reducer(state, action) {
@@ -30,7 +31,7 @@ function CountriesProvider({ children }) {
         const newQuery = action.payload;
         const newData =
           newQuery.length > 1
-            ? state.countriesData.filter((country) =>
+            ? state.initialData.filter((country) =>
                 country.name.common
                   .toLowerCase()
                   .includes(newQuery.toLowerCase())
@@ -43,6 +44,19 @@ function CountriesProvider({ children }) {
         };
       case "countryFetched":
         return { ...state, country: action.payload, status: "ready" };
+      case "countryFiltered":
+        const newCountryData =
+          action.payload !== "all"
+            ? state.initialData.filter(
+                (country) => country.region.toLowerCase() === action.payload
+              )
+            : state.initialData;
+
+        return {
+          ...state,
+          countriesData: newCountryData,
+          region: action.payload,
+        };
       default:
         return { ...state, initialState };
     }
@@ -81,7 +95,11 @@ function CountriesProvider({ children }) {
     }
   }
 
-  const { countriesData, status, query, country } = state;
+  function getRegionCountries(e) {
+    dispatch({ type: "countryFiltered", payload: e.target.value });
+  }
+
+  const { countriesData, status, query, country, region } = state;
 
   return (
     <CountriesContext.Provider
@@ -92,6 +110,8 @@ function CountriesProvider({ children }) {
         query,
         country,
         getCountry,
+        getRegionCountries,
+        region,
       }}
     >
       {children}

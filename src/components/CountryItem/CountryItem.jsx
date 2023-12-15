@@ -6,10 +6,10 @@ function Country({ country }) {
   return (
     <motion.div
       className={styles.card}
-      initial={{ opacity: 0, scale: 0.3, y: 10 }}
+      initial={{ opacity: 0, scale: 0.8, y: 10 }}
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       transition={{
-        duration: 0.5,
+        duration: 0.2,
         type: "spring",
         stiffness: 200,
       }}

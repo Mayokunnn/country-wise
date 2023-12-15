@@ -1,24 +1,41 @@
-import styles from "./FilterCountry.module.css";
+import { useState } from "react";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { useCountries } from "../../contexts/CountriesContext";
 
-// const options = [
-//   { value: "nigeria", label: "Nigeria" },
-//   { value: "germany", label: "Germany" },
-//   { value: "usa", label: "USA" },
-//   { value: "australia", label: "Australia" },
-// ];
+const options = [
+  { value: "all", label: "All" },
+  { value: "africa", label: "Africa" },
+  { value: "americas", label: "Americas" },
+  { value: "asia", label: "Asia" },
+  { value: "europe", label: "Europe" },
+  { value: "oceania", label: "Oceania" },
+];
 
 function FilterCountry() {
+  const { getRegionCountries, region } = useCountries();
   return (
-    <div className={styles.select}>
-      <select>
-        <option value="">Select an option</option>
-        <option>Nigeria</option>
-
-        <option>Germany</option>
-        <option>USA</option>
-        <option>Australia</option>
-      </select>
-    </div>
+    <Box sx={{ minWidth: 200 }}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Region</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={region}
+          label="Age"
+          onChange={getRegionCountries}
+        >
+          {options.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Box>
   );
 }
 
