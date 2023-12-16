@@ -8,13 +8,10 @@ import styles from "./DetailsPage.module.css";
 import { useCountries } from "../../contexts/CountriesContext";
 
 function DetailsPage() {
-  const { getCountry } = useCountries();
+  const { country, status } = useCountries();
   const navigate = useNavigate();
-  const { name } = useParams();
 
-  useEffect(() => {
-    getCountry(name);
-  }, [name]);
+  if (!country) navigate("/");
 
   return (
     <div className={styles.main}>

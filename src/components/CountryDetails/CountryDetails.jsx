@@ -2,7 +2,7 @@ import styles from "./CountryDetails.module.css";
 import Loader from "../Loader/Loader";
 import Message from "../Message/Message";
 import { useCountries } from "../../contexts/CountriesContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function getFirstValue(
@@ -25,12 +25,15 @@ function getFirstValue(
 }
 
 function CountryDetails() {
-  const { country, status, allCountries } = useCountries();
+  const { getCountry, country, status, allCountries } = useCountries();
   const [borders, setBorders] = useState([]);
+  const { name } = useParams();
 
   const navigate = useNavigate();
 
-  console.log(country);
+  useEffect(() => {
+    getCountry(name);
+  }, [name]);
 
   useEffect(() => {
     async function getBorders() {
@@ -46,6 +49,8 @@ function CountryDetails() {
     }
     getBorders();
   }, [country, country?.borders, allCountries]);
+
+  if (!name) navigate("/");
 
   if (status === "error") return <Message>No data from this country</Message>;
 
