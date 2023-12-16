@@ -4,8 +4,19 @@ import Main from "../../components/Main/Main";
 import Body from "../../components/Body/Body";
 
 import styles from "./HomePage.module.css";
+import { useCountries } from "../../contexts/CountriesContext";
+import Message from "../../components/Message/Message";
 
-function HomePage({ countries, status, dispatch, query }) {
+function HomePage() {
+  const { status, query } = useCountries();
+
+  if (!query && status === "error")
+    return (
+      <Message>
+        We had a little problem fetching the countries😫. Try reloading.
+      </Message>
+    );
+
   return (
     <div className={styles.section}>
       <NavBar />

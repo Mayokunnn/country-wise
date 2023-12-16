@@ -6,13 +6,11 @@ function Country({ country, onClick }) {
   return (
     <motion.div
       className={styles.card}
-      initial={{ opacity: 0, scale: 0.8, y: 10 }}
+      initial={{ opacity: 0, scale: 0.9, y: 5 }}
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       whileHover={{ opacity: 1, scale: 1.01 }}
       transition={{
         duration: 0.1,
-        type: "spring",
-        stiffness: 100,
       }}
       viewport={{ once: true }}
       onClick={onClick}

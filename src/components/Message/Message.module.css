@@ -1,0 +1,12 @@
+.messageContainer {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.messageContainer h1 {
+  font-size: 2rem;
+  color: var(--color-light-text);
+}

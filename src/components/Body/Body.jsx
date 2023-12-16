@@ -1,7 +1,7 @@
 import CountryList from "../CountryList/CountryList";
 import styles from "./Body.module.css";
 
-function Body({ countries, status }) {
+function Body() {
   return (
     <div className={styles.section}>
       <CountryList />

@@ -1,5 +1,6 @@
 import styles from "./CountryDetails.module.css";
 import Loader from "../Loader/Loader";
+import Message from "../Message/Message";
 import { useCountries } from "../../contexts/CountriesContext";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -46,9 +47,11 @@ function CountryDetails() {
     getBorders();
   }, [country, country?.borders, allCountries]);
 
-  console.log(borders);
+  if (status === "error") return <Message>No data from this country</Message>;
 
   if (status === "loading") return <Loader />;
+
+  if (!country) return null;
 
   return (
     <div className={styles.main}>
@@ -110,9 +113,6 @@ function CountryDetails() {
                     </span>
                   )
               )}
-              {/* <span>France</span>
-            <span>Germany</span>
-            <span>Netherlands</span> */}
             </div>
           </div>
         )}{" "}

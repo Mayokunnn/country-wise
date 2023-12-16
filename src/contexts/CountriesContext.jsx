@@ -7,7 +7,7 @@ const BASE_URL = "https://restcountries.com/v3.1";
 const initialState = {
   initialData: [],
   countriesData: [],
-  status: "ready",
+  status: "loading",
   query: "",
   country: [],
   region: "",
@@ -30,16 +30,18 @@ function CountriesProvider({ children }) {
       case "search":
         const newQuery = action.payload;
         const newData =
-          newQuery.length > 1
+          newQuery.length > 0
             ? state.initialData.filter((country) =>
                 country.name.common
                   .toLowerCase()
                   .includes(newQuery.toLowerCase())
               )
             : state.initialData;
+        const newStatus = newData.length ? "ready" : "error";
         return {
           ...state,
           query: newQuery,
+          status: newStatus,
           countriesData: newData || state.initialData,
         };
       case "countryFetched":
@@ -56,6 +58,7 @@ function CountriesProvider({ children }) {
           ...state,
           countriesData: newCountryData,
           region: action.payload,
+          status: "ready",
         };
       default:
         return { ...state, initialState };
