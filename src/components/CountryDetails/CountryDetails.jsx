@@ -2,7 +2,7 @@ import styles from "./CountryDetails.module.css";
 import Loader from "../Loader/Loader";
 import Message from "../Message/Message";
 import { useCountries } from "../../contexts/CountriesContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function getFirstValue(
@@ -25,15 +25,10 @@ function getFirstValue(
 }
 
 function CountryDetails() {
-  const { getCountry, country, status, allCountries } = useCountries();
+  const { country, status, allCountries } = useCountries();
   const [borders, setBorders] = useState([]);
-  const { name } = useParams();
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    getCountry(name);
-  }, [name]);
 
   useEffect(() => {
     async function getBorders() {
@@ -50,13 +45,9 @@ function CountryDetails() {
     getBorders();
   }, [country, country?.borders, allCountries]);
 
-  if (!name) navigate("/");
-
   if (status === "error") return <Message>No data from this country</Message>;
 
   if (status === "loading") return <Loader />;
-
-  if (!country) return null;
 
   return (
     <div className={styles.main}>
@@ -109,10 +100,10 @@ function CountryDetails() {
                 (border, i) =>
                   i < 3 && (
                     <span
+                      key={i}
                       onClick={() =>
                         navigate(`/${border?.[0]?.name?.common}`.toLowerCase())
                       }
-                      key={border?.[0]?.cca2}
                     >
                       {border?.[0]?.name?.common}
                     </span>
