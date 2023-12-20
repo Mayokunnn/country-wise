@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
 
 const CountriesContext = createContext();
 
@@ -85,7 +91,7 @@ function CountriesProvider({ children }) {
     getCountries();
   }, [dispatch]);
 
-  async function getCountry(name) {
+  const getCountry = useCallback(async function getCountry(name) {
     try {
       dispatch({ type: "loading" });
 
@@ -96,7 +102,7 @@ function CountriesProvider({ children }) {
     } catch (err) {
       dispatch({ type: "fetchFailed" });
     }
-  }
+  }, []);
 
   function getRegionCountries(e) {
     dispatch({ type: "countryFiltered", payload: e.target.value });

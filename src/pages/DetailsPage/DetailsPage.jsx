@@ -14,7 +14,7 @@ function DetailsPage() {
 
   useEffect(() => {
     getCountry(name);
-  }, [name]);
+  }, [name, getCountry]);
 
   return (
     <div className={styles.main}>
