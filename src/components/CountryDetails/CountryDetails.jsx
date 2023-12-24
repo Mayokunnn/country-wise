@@ -103,7 +103,7 @@ function CountryDetails() {
                       key={i}
                       onClick={() =>
                         navigate(
-                          `details/${border?.[0]?.name?.common}`.toLowerCase()
+                          `/details/${border?.[0]?.name?.common}`.toLowerCase()
                         )
                       }
                     >
