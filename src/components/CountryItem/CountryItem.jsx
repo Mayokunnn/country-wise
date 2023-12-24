@@ -15,7 +15,7 @@ function Country({ country, onClick }) {
         duration: 0.1,
       }}
       viewport={{ once: true }}
-      onClick={() => navigate(`details?name=${name.common.toLowerCase()}`)}
+      onClick={() => navigate(`details/${name.common.toLowerCase()}`)}
     >
       <div className={styles.flag}>
         <img src={flags.png} alt={name.common}></img>
