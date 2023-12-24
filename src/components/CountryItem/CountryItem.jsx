@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./CountryItem.module.css";
 import { motion } from "framer-motion";
 
 function Country({ country, onClick }) {
+  const navigate = useNavigate();
   const { flags, capital, region, population, name } = country;
   return (
     <motion.div
@@ -13,7 +15,7 @@ function Country({ country, onClick }) {
         duration: 0.1,
       }}
       viewport={{ once: true }}
-      onClick={onClick}
+      onClick={() => navigate(`${name.common.toLowerCase()}`)}
     >
       <div className={styles.flag}>
         <img src={flags.png} alt={name.common}></img>
