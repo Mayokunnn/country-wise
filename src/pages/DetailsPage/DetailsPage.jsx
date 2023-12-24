@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import BackButton from "../../components/BackButton/BackButton";
 import CountryDetails from "../../components/CountryDetails/CountryDetails";
@@ -10,7 +10,9 @@ import { useCountries } from "../../contexts/CountriesContext";
 function DetailsPage() {
   const { getCountry } = useCountries();
   const navigate = useNavigate();
-  const { name } = useParams();
+  const [searchParams] = useSearchParams();
+
+  const name = searchParams.get("name");
 
   useEffect(() => {
     getCountry(name);
