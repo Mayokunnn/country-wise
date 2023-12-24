@@ -17,7 +17,7 @@ function App() {
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route path="/" element={<HomePage />}></Route>
-              <Route path="/:name" element={<DetailsPage />}></Route>
+              <Route path="details/:name" element={<DetailsPage />}></Route>
 
               <Route path="*" element={<PageNotFound />}></Route>
             </Routes>
