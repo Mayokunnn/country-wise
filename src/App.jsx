@@ -4,6 +4,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CountriesProvider } from "./contexts/CountriesContext";
 import CountryDetails from "./components/CountryDetails/CountryDetails";
+import Loader from "./components/Loader/Loader";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const DetailsPage = lazy(() => import("./pages/DetailsPage/DetailsPage"));
@@ -13,13 +14,15 @@ function App() {
   return (
     <div className="app">
       <CountriesProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />}></Route>
-            <Route path="details/:name" element={<DetailsPage />}></Route>
+        <BrowserRouter basename="">
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route path="/" element={<HomePage />}></Route>
+              <Route path="details/:name" element={<DetailsPage />}></Route>
 
-            <Route path="*" element={<PageNotFound />}></Route>
-          </Routes>
+              <Route path="*" element={<PageNotFound />}></Route>
+            </Routes>
+          </Suspense>
         </BrowserRouter>
       </CountriesProvider>
     </div>
