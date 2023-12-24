@@ -3,7 +3,6 @@ import { lazy, Suspense } from "react";
 // import HomePage from "./pages/HomePage/HomePage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CountriesProvider } from "./contexts/CountriesContext";
-import CountryDetails from "./components/CountryDetails/CountryDetails";
 import Loader from "./components/Loader/Loader";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
