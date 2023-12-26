@@ -1,4 +1,3 @@
-import { lazy, Suspense } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import BackButton from "../../components/BackButton/BackButton";
@@ -8,13 +7,10 @@ import NavBar from "../../components/NavBar/NavBar";
 import styles from "./DetailsPage.module.css";
 import { useCountries } from "../../contexts/CountriesContext";
 import Loader from "../../components/Loader/Loader";
-
-const CountryDetails = lazy(() =>
-  import("../../components/CountryDetails/CountryDetails")
-);
+import CountryDetails from "../../components/CountryDetails/CountryDetails";
 
 function DetailsPage() {
-  const { getCountry } = useCountries();
+  const { getCountry, status } = useCountries();
   const navigate = useNavigate();
   const { name } = useParams();
 
@@ -26,11 +22,16 @@ function DetailsPage() {
     <div className={styles.main}>
       <NavBar />
       <div className={styles.section}>
-        <Main>
-          <BackButton onClick={() => navigate("/")} />
-          <Suspense fallback={<Loader />}>
-            <CountryDetails />
-          </Suspense>
+        <Main style={{ height: "50vh" }}>
+          {status === "loading" ? (
+            <Loader style={{ position: "relative", top: `${50}%` }} />
+          ) : (
+            <>
+              {" "}
+              <BackButton onClick={() => navigate("/")} />
+              <CountryDetails />
+            </>
+          )}
         </Main>
       </div>
     </div>

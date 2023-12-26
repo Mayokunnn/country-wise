@@ -1,8 +1,8 @@
 import styles from "./Loader.module.css";
 
-function Loader() {
+function Loader({ style = {} }) {
   return (
-    <div className={styles.loaderContainer}>
+    <div style={style} className={styles.loaderContainer}>
       <div className={styles.spinner}>
         <div></div>
         <div></div>
