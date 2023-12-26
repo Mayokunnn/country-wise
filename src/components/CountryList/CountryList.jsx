@@ -7,8 +7,6 @@ import Loader from "../Loader/Loader";
 function CountryList() {
   const { countries, status, query } = useCountries();
 
-  if (status === "loading") return <Loader />;
-
   if (query && status === "error")
     return <Message>We know of no such country on earth😂</Message>;
 

@@ -6,6 +6,7 @@ import Body from "../../components/Body/Body";
 import styles from "./HomePage.module.css";
 import { useCountries } from "../../contexts/CountriesContext";
 import Message from "../../components/Message/Message";
+import Loader from "../../components/Loader/Loader";
 
 function HomePage() {
   const { status, query } = useCountries();
@@ -21,8 +22,15 @@ function HomePage() {
     <div className={styles.section}>
       <NavBar />
       <Main>
-        <Header />
-        <Body />
+        {status === "loading" ? (
+          <Loader />
+        ) : (
+          <>
+            {" "}
+            <Header />
+            <Body />
+          </>
+        )}
       </Main>
     </div>
   );
