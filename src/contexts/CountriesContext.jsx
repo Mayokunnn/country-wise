@@ -80,7 +80,10 @@ function CountriesProvider({ children }) {
         const res = await fetch(`${BASE_URL}/all`);
         const data = await res.json();
 
-        const countryData = data.flatMap((innerArr) => innerArr);
+        const countryData = await data
+          .flatMap((innerArr) => innerArr)
+          .sort((a, b) => a.name.common.localeCompare(b.name.common));
+        console.log(countryData);
 
         dispatch({ type: "dataFetched", payload: countryData });
       } catch (err) {

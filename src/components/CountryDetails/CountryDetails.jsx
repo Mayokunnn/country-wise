@@ -68,28 +68,39 @@ function CountryDetails() {
             <p>
               Region: <span>{country?.region}</span>
             </p>
-            <p>
-              Sub Region: <span>{country?.subregion}</span>
-            </p>
-            <p>
-              Capital: <span>{country?.capital}</span>
-            </p>
+            {country?.subregion && (
+              <p>
+                Sub Region: <span>{country?.subregion}</span>
+              </p>
+            )}
+            {country?.capital && (
+              <p>
+                Capital: <span>{country?.capital}</span>
+              </p>
+            )}
           </div>
           <div>
-            <p>
-              Top Level Domain:{" "}
-              <span>
-                {typeof country?.tld === "string"
-                  ? country?.tld
-                  : country?.tld?.[0]}
-              </span>
-            </p>
-            <p>
-              Currencies: <span>{getFirstValue(country?.currencies).name}</span>
-            </p>
-            <p>
-              Language(s): <span>{getFirstValue(country?.languages)}</span>
-            </p>
+            {country?.tld && (
+              <p>
+                Top Level Domain:{" "}
+                <span>
+                  {typeof country?.tld === "string"
+                    ? country?.tld
+                    : country?.tld?.[0]}
+                </span>
+              </p>
+            )}
+            {country?.currencies && (
+              <p>
+                Currencies:{" "}
+                <span>{getFirstValue(country?.currencies).name}</span>
+              </p>
+            )}
+            {country?.languages && (
+              <p>
+                Language(s): <span>{getFirstValue(country?.languages)}</span>
+              </p>
+            )}
           </div>
         </div>
         {borders && (
